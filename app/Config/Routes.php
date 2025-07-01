@@ -49,3 +49,10 @@ $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 $routes->get('contact', 'Home::contact', ['filter' => 'auth']);
 
 $routes->resource('api', ['controller' => 'apiController']);
+
+$routes->group('diskon', ['filter' => 'auth'], function ($routes) {
+    $routes->get('', 'DiskonController::index');
+    $routes->post('create', 'DiskonController::create');
+    $routes->post('update/(:num)', 'DiskonController::update/$1');
+    $routes->get('delete/(:num)', 'DiskonController::delete/$1');
+});
