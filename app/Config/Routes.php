@@ -12,13 +12,12 @@ $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::login', ['filter' => 'redirect']);
 $routes->get('logout', 'AuthController::logout');
 
-$routes->group('produk', ['filter' => 'auth'], function ($routes) { 
+$routes->group('produk', ['filter' => 'auth'], function ($routes) {
     $routes->get('', 'ProdukController::index');
     $routes->post('', 'ProdukController::create');
     $routes->post('edit/(:any)', 'ProdukController::edit/$1');
     $routes->get('delete/(:any)', 'ProdukController::delete/$1');
     $routes->get('download', 'ProdukController::download');
-
 });
 
 $routes->group('keranjang', ['filter' => 'auth'], function ($routes) {
@@ -29,11 +28,18 @@ $routes->group('keranjang', ['filter' => 'auth'], function ($routes) {
     $routes->get('clear', 'TransaksiController::cart_clear');
 });
 
-$routes->group('kategori-produk', ['filter' => 'auth'], function ($routes) { 
+$routes->group('kategori-produk', ['filter' => 'auth'], function ($routes) {
     $routes->get('', 'KategoriProdukController::index');
     $routes->post('', 'KategoriProdukController::create');
     $routes->post('edit/(:num)', 'KategoriProdukController::edit/$1');
     $routes->get('delete/(:num)', 'KategoriProdukController::delete/$1');
+});
+
+$routes->group('diskon', ['filter' => 'auth'], function ($routes) {
+    $routes->get('', 'DiskonController::index');
+    $routes->post('', 'DiskonController::create');
+    $routes->post('edit/(:num)', 'DiskonController::edit/$1');
+    $routes->get('delete/(:num)', 'DiskonController::delete/$1');
 });
 
 $routes->get('keranjang', 'TransaksiController::index', ['filter' => 'auth']);
@@ -49,10 +55,3 @@ $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 $routes->get('contact', 'Home::contact', ['filter' => 'auth']);
 
 $routes->resource('api', ['controller' => 'apiController']);
-
-$routes->group('diskon', ['filter' => 'auth'], function ($routes) {
-    $routes->get('', 'DiskonController::index');
-    $routes->post('create', 'DiskonController::create');
-    $routes->post('update/(:num)', 'DiskonController::update/$1');
-    $routes->get('delete/(:num)', 'DiskonController::delete/$1');
-});

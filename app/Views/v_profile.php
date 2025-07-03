@@ -47,8 +47,8 @@ History Transaksi Pembelian <strong><?= $username ?></strong>
                                     if(!empty($product)){
 	                                    foreach ($product[$item['id']] as $index2 => $item2) : ?>
 	                                        <?php echo $index2 + 1 . ")" ?>
-	                                        <?php if ($item2['foto'] != '' and file_exists("NiceAdmin/assets/img/" . $item2['foto'] . "")) : ?>
-	                                            <img src="<?php echo base_url() . "NiceAdmin/assets/img/" . $item2['foto'] ?>" width="100px">
+	                                        <?php if ($item2['foto'] != '' and file_exists("img/" . $item2['foto'] . "")) : ?>
+	                                            <img src="<?php echo base_url() . "img/" . $item2['foto'] ?>" width="100px">
 	                                        <?php endif; ?>
 	                                        <strong><?= $item2['nama'] ?></strong>
 	                                        <?= number_to_currency($item2['harga'], 'IDR') ?>

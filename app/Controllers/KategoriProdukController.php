@@ -10,6 +10,7 @@ class KategoriProdukController extends BaseController
 
     function __construct()
     {
+        helper('number'); 
         $this->kategori = new KategoriProdukModel();
     }
 
@@ -31,7 +32,7 @@ class KategoriProdukController extends BaseController
         $this->kategori->insert($dataForm);
 
         return redirect('kategori-produk')->with('success', 'Data Berhasil Ditambah');
-    } 
+    }
 
     public function edit($id)
     {
